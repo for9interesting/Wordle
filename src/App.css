@@ -1,5 +1,6 @@
 #root {
-  max-width: 1280px;
+  max-width: 2560px;
+  max-height: 1440px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -39,4 +40,50 @@
 
 .read-the-docs {
   color: #888;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.letter-row {
+  display: flex;
+  gap: 8px;
+}
+
+.square {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: white;
+  cursor: pointer;
+  user-select: none;
+}
+
+.square:focus {
+  outline: none;
+}
+
+.square.focused {
+  border-color: #4a90e2;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+
+.square:hover {
+  background-color: #f8f8f8;
 }
