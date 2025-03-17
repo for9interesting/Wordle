@@ -2,6 +2,7 @@ import { useState, KeyboardEvent, useEffect, useRef } from 'react'
 import './App.css'
 import { WORD_LENGTH, MAX_ATTEMPTS, getRandomWord, isValidWord } from './wordlist'
 import { LetterState, GameState } from './types'
+import { getRandomMessage } from './messages'
 
 interface SquareProps {
   letter: string;
@@ -300,7 +301,7 @@ function WordleGame() {
       </div>
       {gameState.gameStatus === 'won' && (
         <>
-          <div className="win-message">🎉宝宝宝宝！你真厉害！我爱你！</div>
+          <div className="win-message">{getRandomMessage()}</div>
           <DictionaryCard word={gameState.targetWord} />
         </>
       )}
