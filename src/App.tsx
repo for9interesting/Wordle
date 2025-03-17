@@ -315,14 +315,6 @@ function WordleGame() {
   );
 }
 
-function HuanMessage({huanWord}: {huanWord: string}) {
-  return (
-    <div className="huan-message">
-      <div className="huan-message-text">{huanWord}</div>
-    </div>
-  );
-}
-
 function App() {
   return (
     <div className="app">
