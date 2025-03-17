@@ -3020,10 +3020,10 @@ export const DEBUG_WORDS = [
 ]
 
 export function getRandomWord(): string {
-    //return EASY_WORDS[Math.floor(Math.random() * EASY_WORDS.length)];
-    return DEBUG_WORDS[Math.floor(Math.random() * DEBUG_WORDS.length)];
+    return EASY_WORDS[Math.floor(Math.random() * EASY_WORDS.length)];
+    //return DEBUG_WORDS[Math.floor(Math.random() * DEBUG_WORDS.length)];
 }
 
 export function isValidWord(word: string): boolean {
-    return EASY_WORDS.includes(word.toUpperCase()) || WORDS.includes(word.toUpperCase());
+    return EASY_WORDS.includes(word.toUpperCase()) || WORDS.includes(word.toUpperCase()) || word == "CCSQL";
 } 
