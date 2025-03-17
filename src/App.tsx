@@ -3,6 +3,9 @@ import './App.css'
 import { WORD_LENGTH, MAX_ATTEMPTS, getRandomWord, isValidWord } from './wordlist'
 import { LetterState, GameState } from './types'
 import { getRandomMessage } from './messages'
+import Solver from './Solver'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Dict from './Dict'
 
 interface SquareProps {
   letter: string;
@@ -199,7 +202,11 @@ interface DictionaryData {
   }[];
 }
 
-function DictionaryCard({ word }: { word: string }) {
+export interface DictionaryCardProps {
+  word: string;
+}
+
+export function DictionaryCard({ word }: DictionaryCardProps) {
   const [dictionary, setDictionary] = useState<DictionaryData | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -321,9 +328,13 @@ function WordleGame() {
 
 function App() {
   return (
-    <div className="app">
-      <WordleGame />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<WordleGame />} />
+        <Route path="/solver" element={<Solver />} />
+        <Route path="/dict" element={<Dict />} />
+      </Routes>
+    </Router>
   );
 }
 
