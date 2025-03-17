@@ -1,9 +1,18 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #f5f5f5;
+}
+
 #root {
-  max-width: 2560px;
-  max-height: 1440px;
+  min-height: 100vh;
+  width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0;
   text-align: center;
+  background-color: #f5f5f5;
 }
 
 .logo {
@@ -42,22 +51,27 @@
   color: #888;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #f5f5f5;
-}
-
 .app {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   min-height: 100vh;
+  padding-bottom: 200px;
 }
 
 .letter-row {
   display: flex;
   gap: 8px;
+}
+
+.letter-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .square {
@@ -73,6 +87,8 @@ body {
   background-color: white;
   cursor: pointer;
   user-select: none;
+  transition: all 0.3s ease;
+  color: black;
 }
 
 .square:focus {
@@ -80,10 +96,174 @@ body {
 }
 
 .square.focused {
-  border-color: #4a90e2;
+  border-color: #4CAF50;
   box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
 }
 
 .square:hover {
   background-color: #f8f8f8;
+}
+
+.square.empty {
+  background-color: white;
+}
+
+.square.correct {
+  background-color: #6aaa64;
+  border-color: #6aaa64;
+  color: white;
+}
+
+.square.present {
+  background-color: #c9b458;
+  border-color: #c9b458;
+  color: white;
+}
+
+.square.absent {
+  background-color: #787c7e;
+  border-color: #787c7e;
+  color: white;
+}
+
+.win-message {
+  margin-top: 20px;
+  padding: 15px 30px;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 4px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.big-title {
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  background-color: #3ba5d3;
+  padding: 15px 0;
+  margin: 0;
+  color: white;
+  animation: fadeIn 0.5s ease-in;
+  width: 100%;
+}
+
+.word-guess {
+  margin-top: 20px;
+}
+
+.lose-message {
+  margin-top: 20px;
+  padding: 15px 30px;
+  background-color: #c9b458;
+  color: white;
+  border-radius: 4px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.error-message {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  animation: fadeInOut 2s ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translate(-50%, -20px); }
+  15% { opacity: 1; transform: translate(-50%, 0); }
+  85% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -20px); }
+}
+
+.hidden-input {
+  top: -200px;
+  left: -100px;
+  opacity: 0;
+  pointer-events: none;
+  width: 1px;
+  height: 1px;
+}
+
+.dictionary-card {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  text-align: left;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.dictionary-card h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.dictionary-card .phonetic {
+  color: #666;
+  font-style: italic;
+  margin-bottom: 15px;
+}
+
+.dictionary-card .meaning {
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.dictionary-card .part-of-speech {
+  color: #3ba5d3;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.dictionary-card .definition {
+  color: #666;
+  margin: 5px 0;
+  padding-left: 15px;
+  border-left: 3px solid #eee;
+}
+
+.dictionary-card .example {
+  font-style: italic;
+  margin: 5px 0;
+  padding-left: 15px;
+  border-left: 3px solid #eee;
+}
+
+.huan-message {
+  font-size: 10px;
+  font-weight: bold;
+  background-color: #666;
+  padding: 15px 30px;
+  margin: 0;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  animation: fadeIn 0.5s ease-in;
 }
