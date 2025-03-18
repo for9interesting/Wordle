@@ -6,6 +6,7 @@ import { getRandomMessage } from './messages'
 import Solver from './Solver'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Dict from './Dict'
+import Lookup from './Lookup'
 
 interface SquareProps {
   letter: string;
@@ -51,7 +52,6 @@ function LetterRow({ word, isActive, targetWord, onUpdate }: LetterRowProps) {
   useEffect(() => {
     if (isActive) {
       setFocusedIndex(0);
-      // 在移动设备上自动聚焦到隐藏的输入框
       if (inputRef.current && /Mobi|Android/i.test(navigator.userAgent)) {
         inputRef.current.focus();
       }
@@ -70,7 +70,7 @@ function LetterRow({ word, isActive, targetWord, onUpdate }: LetterRowProps) {
     return 'empty';
   };
 
-  const adjustLetterStates = (word: string): LetterState[] => {
+  const adjustLetterStates = (word: string, targetWord: string): LetterState[] => {
     if (word === "CCSQL") {
       return Array(WORD_LENGTH).fill('correct');
     }
@@ -167,8 +167,8 @@ function LetterRow({ word, isActive, targetWord, onUpdate }: LetterRowProps) {
       />
       {Array(WORD_LENGTH).fill(null).map((_, index) => {
         const states = !isActive && word.trim().length === WORD_LENGTH 
-          ? adjustLetterStates(word) 
-          : Array(WORD_LENGTH).fill(null).map((_, i) => getLetterState(word[i], i));
+          ? adjustLetterStates(word, targetWord) 
+          : Array(WORD_LENGTH).fill(null);
         
         return (
           <Square
@@ -333,6 +333,7 @@ function App() {
         <Route path="/" element={<WordleGame />} />
         <Route path="/solver" element={<Solver />} />
         <Route path="/dict" element={<Dict />} />
+        <Route path="/lookup" element={<Lookup />} />
       </Routes>
     </Router>
   );
