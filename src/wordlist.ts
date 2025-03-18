@@ -3016,12 +3016,18 @@ export const EASY_WORDS = [
 export const DEBUG_WORDS = [
     "HELLO",
     "WORLD",
-    "GAMES"
+    "LOOKS",
+    "WRITE",
+    "GAMES",
+    "TESTS",
+    "WORDS",
 ]
 
 export function getRandomWord(): string {
     return EASY_WORDS[Math.floor(Math.random() * EASY_WORDS.length)];
     //return DEBUG_WORDS[Math.floor(Math.random() * DEBUG_WORDS.length)];
+    //return "CCSQL";
+    //return WORDS[Math.floor(Math.random() * WORDS.length)];
 }
 
 export function isValidWord(word: string): boolean {

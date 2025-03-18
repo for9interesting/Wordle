@@ -298,7 +298,7 @@ function WordleGame() {
 
   return (
     <div className="word-guess">
-      <h1 className="big-title">Wordle</h1>
+      <h1 className="big-title">🍾Wordle🚀</h1>
       <div className="letter-grid">
         {gameState.guesses.map((word, index) => (
           <LetterRow
