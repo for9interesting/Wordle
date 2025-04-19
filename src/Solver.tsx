@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { LetterState } from './types';
-import { WORDS } from './wordlist';
+import { EASY_WORDS } from './wordlist';
 
 interface SquareProps {
   letter: string;
@@ -72,7 +72,7 @@ const Solver: React.FC = () => {
   const [possibleWords, setPossibleWords] = useState<string[]>([]);
 
   useEffect(() => {
-    setPossibleWords(WORDS);
+    setPossibleWords(EASY_WORDS);
   }, []);
 
   const handleSquareClick = (index: number) => {
@@ -107,7 +107,6 @@ const Solver: React.FC = () => {
       setGuesses([...guesses, newGuess]);
       setCurrentWord('');
       setCurrentStates(Array(5).fill('absent'));
-      // TODO: 调用你的词库筛选函数
       const newPossibleWords = filterPossibleWords(newGuess, possibleWords);
       setPossibleWords(newPossibleWords);
       setSuggestions(newPossibleWords);
@@ -139,7 +138,7 @@ const Solver: React.FC = () => {
           type="text"
           value={currentWord}
           onChange={(e) => setCurrentWord(e.target.value.toUpperCase())}
-          onKeyPress={handleKeyPress}
+          onKeyDown={handleKeyPress}
           placeholder="Enter a word..."
           maxLength={5}
         />
@@ -245,14 +244,28 @@ function simpleLetterStates(word: string, targetWord: string): number {
       }
     }
 
-  return states.map(s => {
+  // return states.map(s => {
+  //   switch (s) {
+  //     case 'correct':
+  //       return 2 * 2;
+  //     case 'present':
+  //       return 2;
+  //     case 'absent':
+  //       return 1;
+  //     default:
+  //       return 0;
+  //   }
+  // }).reduce((a, b) => a + b, 0);
+  const power3 = [1, 3, 9, 27, 81];
+
+  return states.map((s, i) => {
     switch (s) {
       case 'correct':
-        return 2 * 2;
+        return 2 * power3[i];
       case 'present':
-        return 2;
+        return power3[i];
       case 'absent':
-        return 1;
+        return 0;
       default:
         return 0;
     }
