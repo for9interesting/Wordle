@@ -1,12 +1,16 @@
 import { useState, KeyboardEvent, useEffect, useRef } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
 import './App.css'
 import { WORD_LENGTH, MAX_ATTEMPTS, getRandomWord, isValidWord } from './wordlist'
 import { LetterState, GameState } from './types'
 import { getRandomMessage } from './messages'
+
 import Solver from './Solver'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Dict from './Dict'
 import Lookup from './Lookup'
+
+import { message } from 'antd'
 
 interface SquareProps {
   letter: string;
@@ -250,6 +254,8 @@ export function DictionaryCard({ word }: DictionaryCardProps) {
 }
 
 function WordleGame() {
+  const [messageApi, contextholder] = message.useMessage();
+
   const [gameState, setGameState] = useState<GameState>({
     targetWord: getRandomWord(),
     currentRow: 0,
@@ -294,11 +300,16 @@ function WordleGame() {
         guesses: newGuesses
       });
     }
+
+    if (newWord.trim().length === WORD_LENGTH && !isValidWord(newWord)) {
+      messageApi.info('Is this even a word?');
+    }
   };
 
   return (
     <div className="word-guess">
-      <h1 className="big-title">🍾Wordle🚀</h1>
+      { contextholder }
+      <h1 className="big-title">Wordle</h1>
       <div className="letter-grid">
         {gameState.guesses.map((word, index) => (
           <LetterRow

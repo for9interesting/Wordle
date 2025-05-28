@@ -61,6 +61,7 @@ html, body {
 .letter-row {
   display: flex;
   gap: 8px;
+  padding-right: 20px;
 }
 
 .letter-grid {
@@ -71,6 +72,10 @@ html, body {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  min-width: 600px;
+  justify-content: center;
+  align-items: center;
 }
 
 .square {
@@ -142,15 +147,15 @@ html, body {
   font-weight: bold;
   text-align: center;
   background-color: #3ba5d3;
-  padding: 15px 0;
+  padding: 15px 15px;
   margin: 0;
   color: white;
   animation: fadeIn 0.5s ease-in;
-  
 }
 
 .word-guess {
   margin-top: 20px;
+  align-items: center;
 }
 
 .lose-message {
@@ -251,19 +256,6 @@ html, body {
   margin: 5px 0;
   padding-left: 15px;
   border-left: 3px solid #eee;
-}
-
-.huan-message {
-  font-size: 10px;
-  font-weight: bold;
-  background-color: #666;
-  padding: 15px 30px;
-  margin: 0;
-  color: white;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  animation: fadeIn 0.5s ease-in;
 }
 
 .dict-input input {
